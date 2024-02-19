@@ -3,19 +3,23 @@ import { Card } from "flowbite-react";
 
 const ProductCard = ({ productName , image, price, rating}) => {
   return (
-    <>
+    <div className="w-72">
       <Card 
         // className="h-96 "
         // imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
-        imgSrc={image}
+        // imgSrc={image}
       >
+        <div className="h-60 ">
+          <img src={image} className="w-full h-full" alt="" />
+        </div>
 
-        <a href="#">
+        <div className=" w-52 overflow-hidden h-8">
           <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
             {/* Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport */}
             {productName}
           </h5>
-        </a>
+        </div>
+     
         <div className="mb-5 mt-2.5 flex items-center">
           <svg
             className="h-5 w-5 text-yellow-300"
@@ -73,7 +77,7 @@ const ProductCard = ({ productName , image, price, rating}) => {
           </a>
         </div>
       </Card>
-    </>
+    </div>
   );
 };
 

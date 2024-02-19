@@ -1,10 +1,17 @@
 import React from 'react'
 import Home from './pages/Home'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProductInfo from './pages/ProductInfo';
 
 const App = () => {
   return (
     <>
-      <Home/>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path='/product/:id' element={<ProductInfo/>} />
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }
