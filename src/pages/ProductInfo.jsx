@@ -17,7 +17,7 @@ const ProductInfo = () => {
     useEffect(() => {
         fetchData();
     }, [id])
-
+ 
   return (
     <div>
         <h1 className="title">{data.title}</h1>
