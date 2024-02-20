@@ -42,13 +42,13 @@ const ProductInfo = () => {
                             <Rating.Star />
                             <Rating.Star />
                             <Rating.Star filled={false} />
-                            <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+                            <div className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
                                 {data && data.rating && data.rating.rate ? data.rating.rate : <Loading />}
-                            </p>
+                            </div>
                         </Rating>
-                        <p className="mb-4 text-sm font-medium text-gray-500 dark:text-gray-400">
+                        <div className="mb-4 text-sm font-medium text-gray-500 dark:text-gray-400">
                             {data && data.rating && data.rating.count ? data.rating.count + ' 🦸 global ratings' : <Loading />}
-                        </p>
+                        </div>
                         <Rating.Advanced percentFilled={70} className="mb-2">
                             5 star
                         </Rating.Advanced>
