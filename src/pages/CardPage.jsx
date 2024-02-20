@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../component/ProductCard";
 import { Link } from "react-router-dom";
+import Loading from "../component/Loading";
 
 const CardPage = () => {
   const [data, setData] = useState(null);
@@ -36,7 +37,7 @@ const CardPage = () => {
             </div>
           ))
         ) : (
-          <h1>Loading...</h1>
+          <Loading/>
         )}
       </div>
     </>
