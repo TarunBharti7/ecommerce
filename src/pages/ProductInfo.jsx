@@ -11,11 +11,18 @@ const ProductInfo = () => {
     console.log(id);
 
     const fetchData = async () => {
-        const url = await fetch(`https://fakestoreapi.com/products/${id}`);
+        try {
+            const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+            if (!response.ok) {
+                throw new Error("Network request failed");
+            }
+            const result = await response.json();
+            setData(result);
+        } catch (error) {
+            // Handle the error if needed
+            console.error("Error fetching data:", error);
+        }
 
-        const response = await url.json();
-        // console.log(response.rating.rate);
-        setData(response)
     }
 
     useEffect(() => {
