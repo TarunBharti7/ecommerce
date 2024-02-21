@@ -6,7 +6,7 @@ import dataObject from "../data";
 const Slider = () => {
     return (
         <>
-            <div className="h-32 sm:h-64 lg:h-96 xl:h-[35rem] 2xl:h-[] ">
+            <div className="h-40 sm:h-64 lg:h-96 xl:h-[35rem] 2xl:h-[] ">
                 <Carousel>
                     <img src={dataObject.sliderData[0].image} alt="..." />
                     <img src={dataObject.sliderData[1].image} alt="..." />
