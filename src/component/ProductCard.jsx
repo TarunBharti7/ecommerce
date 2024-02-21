@@ -3,12 +3,8 @@ import { Card } from "flowbite-react";
 
 const ProductCard = ({ productName , image, price, rating}) => {
   return (
-    <div className="w-72">
-      <Card 
-        // className="h-96 "
-        // imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
-        // imgSrc={image}
-      >
+    <div className="w-72 ">
+      <Card>
         <div className="h-60 ">
           <img src={image} className="w-full h-full" alt="" />
         </div>
