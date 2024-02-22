@@ -46,20 +46,24 @@ const ProductInfo = () => {
                         <h1 className="text-3xl font-bold text-gray-900 ">${data.price}</h1>
                         <Button color="blue"> Add to cart</Button>
                     </div>
-                    <div className='pb-4'>
-                        <Rating size="md" className='pb-3 '>
-                            <Rating.Star />
-                            <Rating.Star />
-                            <Rating.Star />
-                            <Rating.Star />
-                            <Rating.Star filled={false} />
-                            <div className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
-                                {data && data.rating && data.rating.rate ? data.rating.rate : <Loading />}
-                            </div>
-                        </Rating>
-                        <div className="mb-4 text-sm font-medium text-gray-500 dark:text-gray-400">
+                    <div className='pb-4 '>
+
+                        <div className='flex justify-center lg:block'>
+                            <Rating size="md" className='pb-3 '>
+                                <Rating.Star />
+                                <Rating.Star />
+                                <Rating.Star />
+                                <Rating.Star />
+                                <Rating.Star filled={false} />
+                                <div className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    {data && data.rating && data.rating.rate ? data.rating.rate : <Loading />}
+                                </div>
+                            </Rating>
+                        </div>
+                        <div className="mb-4 text-sm font-medium text-gray-500 dark:text-gray-400 text-center lg:text-left">
                             {data && data.rating && data.rating.count ? data.rating.count + ' 🦸 global ratings' : <Loading />}
                         </div>
+
                         <Rating.Advanced percentFilled={70} className="mb-2">
                             5 star
                         </Rating.Advanced>
