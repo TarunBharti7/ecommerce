@@ -8,6 +8,7 @@ import { Button } from 'flowbite-react';
 
 const ProductInfo = () => {
     const [data, setData] = useState([]);
+    const [readMore, setReadMore] = useState(false);
     const { id } = useParams();
     console.log(id);
 
@@ -40,8 +41,16 @@ const ProductInfo = () => {
                 </div>
                 <div className='flex-1 m-4 lg:m-16 lg:ml-5'>
                     <h1 className="text-xl lg:text-4xl font-serif font-bold">{data.title}</h1>
-                    <h2 className="text-lg lg:text-xl text-blue-500 font-serif font-bold uppercase ">{data.category}</h2>
-                    <p className='font-sans font-semibold text-sm lg:'>{data.description}</p>
+                    <h2 className="text-lg lg:text-xl text-slate-700 font-serif font-bold uppercase ">{data.category}</h2>
+
+                    <p className='font-sans font-semibold text-sm lg'>
+                        {data && data.description ? (readMore ? data.description : data.description.substring(0, 200)) : ''}
+                        <button className='rounded-md  text-blue-500 font-bold ' onClick={() => setReadMore(!readMore)}>
+                            {readMore ? 'Show Less' : '.....Read More'}
+                        </button>
+                    </p>
+
+
                     <div className='flex justify-around py-5'>
                         <h1 className="text-3xl font-bold text-gray-900 ">${data.price}</h1>
                         <Button color="blue"> Add to cart</Button>
