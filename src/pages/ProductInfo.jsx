@@ -8,9 +8,13 @@ import { Button } from 'flowbite-react';
 
 const ProductInfo = () => {
     const [data, setData] = useState([]);
+    const [cart, setCart] = useState(
+        JSON.parse(localStorage.getItem('cart')) || []
+    );
     const [readMore, setReadMore] = useState(false);
     const { id } = useParams();
-    console.log(id);
+
+    // console.log(cart);
 
     const fetchData = async () => {
         try {
@@ -30,6 +34,28 @@ const ProductInfo = () => {
     useEffect(() => {
         fetchData();
     }, [id])
+
+    console.log(cart);
+
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
+
+    const addToCart = (id, quantity) => {
+        // Check if the product is already in the cart
+        const existingProduct = cart.find(item => item.productId === id);
+
+        if (existingProduct) {
+            // If the product is already in the cart, update its quantity
+            setCart(prevCart => prevCart.map(item =>
+                item.productId === id ? { ...item, productQuantity: item.productQuantity + quantity } : item
+            ));
+        } else {
+            // If the product is not in the cart, add it
+            setCart(prevCart => [...prevCart, { productId: id, productQuantity: quantity }]);
+        }
+    };
 
     return (
         <>
@@ -53,7 +79,7 @@ const ProductInfo = () => {
 
                     <div className='flex justify-around py-5'>
                         <h1 className="text-3xl font-bold text-gray-900 ">${data.price}</h1>
-                        <Button color="blue"> Add to cart</Button>
+                        <Button color="blue" onClick={() => addToCart(id, 1)}>Add to cart</Button>
                     </div>
                     <div className='pb-4 '>
 
