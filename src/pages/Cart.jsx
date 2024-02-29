@@ -1,66 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import Nav from "../component/Nav";
+import Product from "../component/Product";
 
 const Cart = () => {
-    const [cart, setCart] = useState(
-        JSON.parse(localStorage.getItem('cart')) || []
-    );
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
 
-    useEffect(() => {
-        const fetchDataForCart = async () => {
-            const productDetailsApi = 'https://fakestoreapi.com/products/';
 
-            try {
-                const fetchPromises = cart.map(async (item) => {
-                    const response = await fetch(`${productDetailsApi}${item.productId}`);
-                    if (!response.ok) {
-                        throw new Error(`Error fetching product ${item.productId}`);
-                    }
-                    return response.json();
-                });
+  useEffect(() => {
+    const fetchDataForCart = async () => {
+      const productDetailsApi = "https://fakestoreapi.com/products/";
 
-                const productsData = await Promise.all(fetchPromises);
+      try {
+        const fetchPromises = cart.map(async (item) => {
+          const response = await fetch(`${productDetailsApi}${item.productId}`);
+          if (!response.ok) {
+            throw new Error(`Error fetching product ${item.productId}`);
+          }
+          return response.json();
+        });
 
-                // Update the cart with additional product details
-                const updatedCart = cart.map((item, index) => ({
-                    ...item,
-                    // Assuming the API response includes properties like 'image' and 'price'
-                    image: productsData[index]?.image || '',
-                    price: productsData[index]?.price || 0,
-                    // Add other properties as needed
-                }));
+        const productsData = await Promise.all(fetchPromises);
 
-                setCart(updatedCart);
+        // Update the cart with additional product details
+        const updatedCart = cart.map((item, index) => ({
+          ...item,
+          // Assuming the API response includes properties like 'image' and 'price'
+          image: productsData[index]?.image || "",
+          price: productsData[index]?.price || 0,
+          title: productsData[index]?.title || 0,
+          // Add other properties as needed
+        }));
 
-                // Log the updated cart with product details
-                console.log(updatedCart);
-            } catch (error) {
-                console.error("Error fetching data from API:", error);
-            }
-        };
+        setCart(updatedCart);
 
-        fetchDataForCart();
-    }, [cart]);
+        // Log the updated cart with product details
+        console.log(updatedCart);
+      } catch (error) {
+        console.error("Error fetching data from API:", error);
+      }
+    };
 
-    return (
-        <>
-            <div>
-                <h2>Cart Details</h2>
-                {cart.map((item) => (
-                    <div key={item.productId}>
-                        {/* Display product image */}
-                        <img src={item.image} alt={`Product ${item.productId}`} style={{ width: '50px' }} />
+    fetchDataForCart();
+  }, []);
 
-                        {/* Display product price */}
-                        <p>${item.price}</p>
-
-                        {/* Display other product details as needed */}
-                        <p>{item.title}</p>
-                        <p>Quantity: {item.productQuantity}</p>
-                    </div>
-                ))}
-            </div>
-        </>
-    )
-}
+  return (
+    <>
+      <Nav />
+      <h1 className="text-2xl font-bold text-center lg:mt-4">YOUR BAG</h1>
+      <div className="mx-auto max-w-[672px] mt-8 flex w-11/12 flex-col gap-6">
+        {cart.map((item, index) => (
+          <Product
+            key={index}
+            id={item.productId}
+            img={item.image}
+            title={item.title}
+            price={item.price}
+            quantity={item.productQuantity}
+          />
+        ))}
+      </div>
+    </>
+  );
+};
 
 export default Cart;

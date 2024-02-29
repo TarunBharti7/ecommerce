@@ -1,7 +1,7 @@
 import React from "react";
-import { Avatar, Dropdown, Navbar } from 'flowbite-react';
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import dataObject from "../data.js";
-
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
@@ -44,13 +44,25 @@ const Nav = () => {
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-          <Navbar.Link href="#" active>
+
+          <Navbar.Link active href="/">
             Home
           </Navbar.Link>
           <Navbar.Link href="#">About</Navbar.Link>
           <Navbar.Link href="#">Services</Navbar.Link>
           <Navbar.Link href="#">Pricing</Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
+          <Navbar.Link href="/cart"> 
+              Cart <span className="bg-pink-500 px-2.5 py-1 rounded-full text-white">4</span>
+          </Navbar.Link>
+
+          {/* <Link>Home</Link>
+          <Link>About</Link>
+          <Link>Services</Link>
+          <Link>Pricing</Link>
+          <Link>
+            Cart <span className="bg-pink-500 px-2.5 py-1 rounded-full text-white">4</span>
+          </Link> */}
+
         </Navbar.Collapse>
       </Navbar>
     </>
