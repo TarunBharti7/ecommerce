@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import dataObject from "../data.js";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
+
+  const [amount, setAmount] = useState(cart.reduce((acc, item) => acc + item.productQuantity, 0));
+
+
   return (
     <>
       <Navbar fluid rounded>
@@ -52,7 +59,7 @@ const Nav = () => {
           <Navbar.Link href="#">Services</Navbar.Link>
           <Navbar.Link href="#">Pricing</Navbar.Link>
           <Navbar.Link href="/cart"> 
-              Cart <span className="bg-pink-500 px-2.5 py-1 rounded-full text-white">4</span>
+              Cart <span className="bg-pink-500 px-2.5 py-1 rounded-full text-white">{amount} </span>
           </Navbar.Link>
 
           {/* <Link>Home</Link>
